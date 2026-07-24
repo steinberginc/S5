@@ -85,6 +85,7 @@ private struct HeroView: View {
 
                 VStack(alignment: .leading, spacing: 10) {
                     SectionLabel(text: "Your 5-day hybrid plan")
+                        .padding(.bottom, 12)
                     VStack(alignment: .leading, spacing: -5) {
                         HeroHeadline(text: "SHOW UP.")
                         HeroHeadline(text: "PUT IN WORK.")

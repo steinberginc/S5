@@ -7,8 +7,8 @@ struct PlanView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
+            ScrollView(.vertical, showsIndicators: true) {
+                LazyVStack(alignment: .leading, spacing: 24) {
                     SectionLabel(text: "The full week")
                     Text("FIVE DAYS.\nONE CLEAR PLAN.")
                         .font(S5Type.display(52))
@@ -57,7 +57,10 @@ struct PlanView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                 }
                 .padding(18)
+                .padding(.bottom, 32)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
+            .scrollBounceBehavior(.always)
             .background(S5Theme.black)
             .navigationTitle("Plan")
             .toolbarBackground(S5Theme.black, for: .navigationBar)
@@ -99,8 +102,8 @@ struct S5ProgressView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 24) {
+            ScrollView(.vertical, showsIndicators: true) {
+                LazyVStack(alignment: .leading, spacing: 24) {
                     SectionLabel(text: "Your momentum")
                     Text("PROOF\nOF WORK.")
                         .font(S5Type.display(60))
@@ -156,7 +159,10 @@ struct S5ProgressView: View {
                     .frame(maxWidth: .infinity)
                 }
                 .padding(18)
+                .padding(.bottom, 32)
+                .frame(maxWidth: .infinity, alignment: .topLeading)
             }
+            .scrollBounceBehavior(.always)
             .background(S5Theme.black)
             .navigationTitle("Progress")
             .toolbarBackground(S5Theme.black, for: .navigationBar)
