@@ -29,10 +29,10 @@ struct IntervalTimerView: View {
 
                 VStack(spacing: 10) {
                     Text(mode == .work ? "KEEP MOVING" : "BREATHE + RESET")
-                        .font(.system(size: 10, weight: .black, design: .monospaced))
+                        .font(S5Type.data(10, weight: .black))
                         .tracking(1.8)
                     Text(formattedTime)
-                        .font(.system(size: 78, weight: .black, design: .monospaced))
+                        .font(S5Type.data(78, weight: .black))
                         .tracking(-7)
                 }
                 .frame(maxWidth: .infinity, minHeight: 230)
@@ -102,7 +102,7 @@ private struct TimerButton: View {
         Button(action: action) {
             VStack(spacing: 4) {
                 Image(systemName: systemImage)
-                Text(title).font(.system(size: 9, weight: .bold, design: .monospaced))
+                Text(title).font(S5Type.data(9))
             }
             .frame(maxWidth: .infinity, minHeight: 58)
             .background(S5Theme.panel)

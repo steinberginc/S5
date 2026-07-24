@@ -53,7 +53,7 @@ struct WorkoutView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button { showTimer = true } label: {
                         Label("Timer", systemImage: "timer")
-                            .font(.system(size: 11, weight: .bold, design: .monospaced))
+                            .font(S5Type.data(11))
                     }
                     .buttonStyle(.bordered)
                     .tint(.white)
@@ -84,9 +84,9 @@ private struct HeroView: View {
             VStack(alignment: .leading, spacing: 10) {
                 SectionLabel(text: "Your 5-day hybrid plan")
                 Text("SHOW UP.\nPUT IN WORK.")
-                    .font(.system(size: 43, weight: .black, design: .rounded))
-                    .tracking(-2.4)
-                    .lineSpacing(-7)
+                    .font(S5Type.display(54))
+                    .tracking(-0.8)
+                    .lineSpacing(-5)
                 HStack(spacing: 12) {
                     Stat(value: "40–45", label: "MIN LIFT")
                     Circle().fill(S5Theme.red).frame(width: 4, height: 4)
@@ -108,7 +108,7 @@ private struct HeroView: View {
                 Text(value).fontWeight(.black).foregroundStyle(.white)
                 Text(label).foregroundStyle(.white.opacity(0.56))
             }
-            .font(.system(size: 9, design: .monospaced))
+            .font(S5Type.data(9, weight: .regular))
         }
     }
 }
@@ -124,9 +124,9 @@ private struct DayPicker: View {
                         withAnimation(.snappy) { selectedDay = workout.id }
                     } label: {
                         VStack(alignment: .leading, spacing: 3) {
-                            Text("DAY").font(.system(size: 8, weight: .bold, design: .monospaced))
-                            Text("0\(workout.id)").font(.system(size: 23, weight: .black, design: .rounded))
-                            Text(workout.focus.uppercased()).font(.system(size: 9, weight: .bold, design: .monospaced))
+                            Text("DAY").font(S5Type.data(8))
+                            Text("0\(workout.id)").font(S5Type.display(28))
+                            Text(workout.focus.uppercased()).font(S5Type.data(9))
                         }
                         .frame(width: 88, alignment: .leading)
                         .padding(.vertical, 13)
@@ -151,8 +151,8 @@ private struct WorkoutTitle: View {
             VStack(alignment: .leading, spacing: 5) {
                 SectionLabel(text: "Day 0\(workout.id) / 05")
                 Text(workout.focus.uppercased())
-                    .font(.system(size: 51, weight: .black, design: .rounded))
-                    .tracking(-3)
+                    .font(S5Type.display(60))
+                    .tracking(-0.8)
                 Text(workout.kicker)
                     .font(.subheadline)
                     .foregroundStyle(S5Theme.secondary)
@@ -191,7 +191,7 @@ private struct CircuitSection: View {
                 Text("Move continuously with clean form. Scale the pace before the movement.")
                     .foregroundStyle(S5Theme.secondary)
             }
-            .font(.system(size: 11, design: .monospaced))
+            .font(S5Type.data(11, weight: .regular))
             .padding(13)
             .background(S5Theme.red.opacity(0.1))
             .overlay(Rectangle().stroke(S5Theme.red.opacity(0.4)))
@@ -206,7 +206,7 @@ private struct CircuitSection: View {
                     Spacer()
                     Image(systemName: "arrow.right")
                 }
-                .font(.system(size: 12, weight: .black, design: .monospaced))
+                .font(S5Type.data(12, weight: .black))
                 .padding(.horizontal, 18)
                 .frame(height: 56)
                 .background(S5Theme.red)
@@ -228,14 +228,14 @@ private struct BlockHeader: View {
     var body: some View {
         HStack(spacing: 12) {
             Text(number)
-                .font(.system(size: 12, weight: .black, design: .monospaced))
+                .font(S5Type.data(12, weight: .black))
                 .frame(width: 40, height: 40)
                 .background(S5Theme.red)
                 .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
             VStack(alignment: .leading, spacing: 3) {
-                Text(title.uppercased()).font(.system(size: 19, weight: .black, design: .rounded))
+                Text(title.uppercased()).font(S5Type.display(23))
                 Text(subtitle.uppercased())
-                    .font(.system(size: 9, weight: .medium, design: .monospaced))
+                    .font(S5Type.data(9, weight: .medium))
                     .foregroundStyle(S5Theme.secondary)
             }
             Spacer()
@@ -263,11 +263,11 @@ private struct ExerciseRow: View {
                             .clipShape(Circle())
                         VStack(alignment: .leading, spacing: 4) {
                             Text(exercise.name)
-                                .font(.system(size: 14, weight: .bold))
+                                .font(S5Type.sans(14, weight: .bold))
                                 .strikethrough(progressStore.isComplete(exercise.id))
                                 .multilineTextAlignment(.leading)
                             Text(exercise.prescription.uppercased())
-                                .font(.system(size: 10, weight: .bold, design: .monospaced))
+                                .font(S5Type.data(10))
                                 .foregroundStyle(S5Theme.red)
                         }
                         Spacer()

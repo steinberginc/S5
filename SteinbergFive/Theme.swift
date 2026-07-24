@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 enum S5Theme {
     static let black = Color(red: 0.02, green: 0.02, blue: 0.02)
@@ -9,6 +10,25 @@ enum S5Theme {
     static let secondary = Color.white.opacity(0.58)
 }
 
+enum S5Type {
+    private static let displayName = "Futura-CondensedExtraBold"
+
+    static func display(_ size: CGFloat) -> Font {
+        if UIFont(name: displayName, size: size) != nil {
+            return .custom(displayName, fixedSize: size)
+        }
+        return .system(size: size, weight: .black, design: .default)
+    }
+
+    static func sans(_ size: CGFloat, weight: Font.Weight = .regular) -> Font {
+        .system(size: size, weight: weight, design: .default)
+    }
+
+    static func data(_ size: CGFloat, weight: Font.Weight = .bold) -> Font {
+        .system(size: size, weight: weight, design: .monospaced)
+    }
+}
+
 struct S5Wordmark: View {
     var body: some View {
         HStack(spacing: 10) {
@@ -16,17 +36,17 @@ struct S5Wordmark: View {
                 RoundedRectangle(cornerRadius: 8, style: .continuous)
                     .fill(S5Theme.red)
                 Text("S5")
-                    .font(.system(size: 15, weight: .black, design: .rounded))
+                    .font(S5Type.display(18))
                     .foregroundStyle(.white)
             }
             .frame(width: 38, height: 38)
 
             VStack(alignment: .leading, spacing: 0) {
                 Text("STEINBERG")
-                    .font(.system(size: 12, weight: .black, design: .rounded))
-                    .tracking(1.7)
+                    .font(S5Type.display(14))
+                    .tracking(0.7)
                 Text("FIVE")
-                    .font(.system(size: 9, weight: .bold, design: .monospaced))
+                    .font(S5Type.data(9))
                     .foregroundStyle(S5Theme.red)
                     .tracking(3.8)
             }
@@ -42,7 +62,7 @@ struct SectionLabel: View {
 
     var body: some View {
         Text(text.uppercased())
-            .font(.system(size: 10, weight: .bold, design: .monospaced))
+            .font(S5Type.data(10))
             .tracking(1.7)
             .foregroundStyle(S5Theme.red)
     }
@@ -61,7 +81,7 @@ struct S5ProgressRing: View {
                 .stroke(S5Theme.red, style: StrokeStyle(lineWidth: size * 0.11, lineCap: .round))
                 .rotationEffect(.degrees(-90))
             Text("\(Int(progress * 100))%")
-                .font(.system(size: size * 0.17, weight: .black, design: .monospaced))
+                .font(S5Type.data(size * 0.17, weight: .black))
         }
         .frame(width: size, height: size)
         .accessibilityLabel("\(Int(progress * 100)) percent complete")
