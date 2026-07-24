@@ -68,36 +68,56 @@ struct WorkoutView: View {
 
 private struct HeroView: View {
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            Image("HeroImage")
-                .resizable()
-                .scaledToFill()
-                .frame(height: 280)
-                .clipped()
+        GeometryReader { proxy in
+            ZStack(alignment: .bottomLeading) {
+                Image("HeroImage")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: proxy.size.width, height: 280)
+                    .clipped()
 
-            LinearGradient(
-                colors: [S5Theme.black.opacity(0.05), S5Theme.black.opacity(0.94)],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+                LinearGradient(
+                    colors: [S5Theme.black.opacity(0.05), S5Theme.black.opacity(0.94)],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .frame(width: proxy.size.width, height: 280)
 
-            VStack(alignment: .leading, spacing: 10) {
-                SectionLabel(text: "Your 5-day hybrid plan")
-                Text("SHOW UP.\nPUT IN WORK.")
-                    .font(S5Type.display(54))
-                    .tracking(-0.8)
-                    .lineSpacing(-5)
-                HStack(spacing: 12) {
-                    Stat(value: "40–45", label: "MIN LIFT")
-                    Circle().fill(S5Theme.red).frame(width: 4, height: 4)
-                    Stat(value: "30", label: "MIN CIRCUIT")
-                    Circle().fill(S5Theme.red).frame(width: 4, height: 4)
-                    Stat(value: "5", label: "DAYS")
+                VStack(alignment: .leading, spacing: 10) {
+                    SectionLabel(text: "Your 5-day hybrid plan")
+                    VStack(alignment: .leading, spacing: -5) {
+                        HeroHeadline(text: "SHOW UP.")
+                        HeroHeadline(text: "PUT IN WORK.")
+                    }
+                    HStack(spacing: 12) {
+                        Stat(value: "40–45", label: "MIN LIFT")
+                        Circle().fill(S5Theme.red).frame(width: 4, height: 4)
+                        Stat(value: "30", label: "MIN CIRCUIT")
+                        Circle().fill(S5Theme.red).frame(width: 4, height: 4)
+                        Stat(value: "5", label: "DAYS")
+                    }
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(20)
             }
-            .padding(20)
+            .frame(width: proxy.size.width, height: 280)
+            .clipped()
         }
         .frame(height: 280)
+    }
+
+    private struct HeroHeadline: View {
+        let text: String
+
+        var body: some View {
+            Text(text)
+                .font(S5Type.display(52))
+                .tracking(-0.6)
+                .lineLimit(1)
+                .minimumScaleFactor(0.76)
+                .allowsTightening(true)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 
     private struct Stat: View {
